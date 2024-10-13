@@ -1,0 +1,68 @@
+<form [formGroup]="draftForm" (ngSubmit)="onSubmit()">
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter your name"
+      />
+      <div
+        *ngIf="draftForm?.get('name')?.invalid && draftForm?.get('name')?.touched"
+        class="text-danger"
+      >
+        <div *ngIf="draftForm?.get('name')?.errors?.['required']">
+          Name is required.
+        </div>
+      </div>
+    </div>
+  
+    <!-- Address Field -->
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input
+        id="address"
+        type="text"
+        class="form-control"
+        formControlName="address"
+        placeholder="Enter your address"
+      />
+      <div
+        *ngIf="draftForm?.get('address')?.invalid && draftForm?.get('address')?.touched"
+        class="text-danger"
+      >
+        <div *ngIf="draftForm?.get('address')?.errors?.['required']">
+          Address is required.
+        </div>
+      </div>
+    </div>
+  
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter your email"
+      />
+      <div
+        *ngIf="draftForm?.get('email')?.invalid && draftForm?.get('email')?.touched"
+        class="text-danger"
+      >
+        <div *ngIf="draftForm?.get('email')?.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="draftForm?.get('email')?.errors?.['email']">
+          Invalid email format.
+        </div>
+      </div>
+    </div>
+  
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="draftForm.invalid">Submit</button>
+  </form>
+  

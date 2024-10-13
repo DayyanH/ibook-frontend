@@ -1,0 +1,11 @@
+
+<h2>Create Project</h2>
+<form (ngSubmit)="saveProject()">
+  <label for="title">Title</label>
+  <input [(ngModel)]="project.title" name="title" required />
+
+  <label for="content">Content</label>
+  <textarea [(ngModel)]="project.content" name="content" required></textarea>
+
+  <button type="submit">Save</button>
+</form>

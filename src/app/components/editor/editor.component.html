@@ -1,0 +1,53 @@
+<div class="editor-container">
+    <h2>Document Editor</h2>
+    <quill-editor 
+      [(ngModel)]="content" 
+      (onSelectionChanged)="onWordDoubleClick($event)" 
+       [modules]="quillConfig" theme="snow">
+    </quill-editor>
+  
+    <div *ngIf="wordData" class="word-info">
+      <h3>Word Information</h3>
+       <div *ngIf="wordData.length && wordData[0].meanings; else noData">
+        <!-- Loop through each part of speech (noun, verb, etc.) -->
+        <div *ngIf="wordData[0].meanings && wordData[0].meanings.length > 0">
+            <h3>Meanings</h3>
+            <div *ngFor="let meaning of wordData[0].meanings" class="meaning">
+              <h4>{{ meaning.partOfSpeech | titlecase }}</h4>
+        
+              <!-- Definitions -->
+              <div *ngIf="meaning.definitions && meaning.definitions.length > 0">
+                <h5>Definitions:</h5>
+                <ul>
+                  <li *ngFor="let definition of meaning.definitions">
+                    {{ definition.definition }}
+                    <div *ngIf="definition.example" class="example">
+                      <strong>Example:</strong> "{{ definition.example }}"
+                    </div>
+                  </li>
+                </ul>
+              </div>
+        
+              <!-- Synonyms -->
+              <div *ngIf="meaning.synonyms && meaning.synonyms.length > 0">
+                <h5>Synonyms:</h5>
+                <p>{{ meaning.synonyms.join(', ') }}</p>
+              </div>
+        
+              <!-- Antonyms -->
+              <div *ngIf="meaning.antonyms && meaning.antonyms.length > 0">
+                <h5>Antonyms:</h5>
+                <p>{{ meaning.antonyms.join(', ') }}</p>
+              </div>
+            </div>
+          </div>
+          </div>
+      
+      <!-- Fallback when there's no data -->
+      <ng-template #noData>
+        <p>No data available for the selected word.</p>
+      </ng-template>
+      
+    </div>
+  </div>
+  

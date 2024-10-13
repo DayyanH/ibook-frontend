@@ -1,0 +1,12 @@
+.editor-container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .word-info {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
